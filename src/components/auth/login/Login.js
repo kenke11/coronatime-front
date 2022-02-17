@@ -212,7 +212,7 @@ const Login = () => {
 
                 <div className='flex justify-center text-gray-500'>
                   <span>
-                    {t('dont_have_and_account')}
+                    {t('dont_have_and_account')}{' '}
                     <Link
                       to='/registration'
                       className='font-semibold text-gray-800'
