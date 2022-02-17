@@ -1,12 +1,13 @@
 import React from 'react';
 import CoronaVaccineImg from '../CoronaVaccineImg';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const { t } = useTranslation();
 
   return (
-    <div className='min-h-screen flex'>
+    <>
       <div className='flex-1 flex flex-col w-7/12 justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24'>
         <div className='mx-auto w-full max-w-sm lg:w-96'>
           <div>
@@ -212,9 +213,12 @@ const Login = () => {
                 <div className='flex justify-center text-gray-500'>
                   <span>
                     {t('dont_have_and_account')}
-                    <a className='font-semibold text-gray-800'>
+                    <Link
+                      to='/registration'
+                      className='font-semibold text-gray-800'
+                    >
                       {t('sign_up_for_free')}
-                    </a>
+                    </Link>
                   </span>
                 </div>
               </form>
@@ -225,7 +229,7 @@ const Login = () => {
       <div className='hidden lg:block relative w-0 flex-1'>
         <CoronaVaccineImg />
       </div>
-    </div>
+    </>
   );
 };
 
