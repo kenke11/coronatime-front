@@ -1,11 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
+import { logout } from '../../../store/slices/auth';
 
 const UserMenu = () => {
   const username = useSelector((state) => state.auth.user.user.username);
 
   const { t } = useTranslation();
+
+  const dispatch = useDispatch();
 
   const [userMenu, setUserMenu] = useState(false);
   const userMenuWindow = useRef(null);
@@ -38,6 +41,10 @@ const UserMenu = () => {
 
   const logoutModalCloseHandler = () => {
     setLogoutModal(false);
+  };
+
+  const logoutHandler = () => {
+    dispatch(logout());
   };
 
   return (
@@ -95,7 +102,10 @@ const UserMenu = () => {
           <div className='py-5 px-5 rounded-xl border border-gray-300 bg-gray-200 w-72 self-end -mr-1 opacity-100 z-30'>
             <div>{t('do_you_really_want_to_log_out')}</div>
             <div className='flex justify-end  space-x-6 mt-5'>
-              <button className='px-2 py-1 border border-gray-300 rounded hover:bg-red-200 transition duration-150'>
+              <button
+                onClick={logoutHandler}
+                className='px-2 py-1 border border-gray-300 rounded hover:bg-red-200 transition duration-150'
+              >
                 {t('log_out')}
               </button>
               <button
