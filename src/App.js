@@ -1,13 +1,15 @@
-import Login from './components/auth/login/Login';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Login from './components/auth/login/Login';
 import Registration from './components/auth/registration/Registration';
 import Auth from './components/auth/Auth';
 import Dashboard from './components/dashboard/Dashboard';
 import Worldwide from './components/dashboard/worldwide/Worldwide';
 
 function App() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.auth);
+
+  console.log(user);
 
   return (
     <>
