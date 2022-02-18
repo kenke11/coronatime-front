@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setMessage } from '../slices/message';
 
 const API_URL = 'http://127.0.0.1:8000/api';
 
@@ -11,12 +10,8 @@ const signup = (username, email, password) => {
   console.log('aq var');
   return axios
     .post(`${API_URL}/signup`, user)
-    .then((res) => {
-      if (res.data.status === 'error') {
-        console.log('res.data.errors)', res.data.errors);
-      } else if (res.data.status === 'success') {
-        console.log(res.data.message);
-      }
+    .then((response) => {
+      return response.data;
     })
     .catch((error) => {
       console.log('Request error', error);

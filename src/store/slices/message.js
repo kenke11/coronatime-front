@@ -1,18 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialState = {};
+const initialState = { successMessage: '', errorMessage: '' };
 const messageSlice = createSlice({
   name: 'message',
   initialState,
   reducers: {
-    setMessage: (state, action) => {
+    setSuccessMessage: (state, action) => {
       console.log('action message', action);
-      return { message: action.payload };
+      return { successMessage: action.payload, errorMessage: '' };
+    },
+    setErrorMessage: (state, action) => {
+      console.log('action message', action);
+      return { successMessage: '', errorMessage: action.payload };
     },
     clearMessage: () => {
-      return { message: '' };
+      return { successMessage: '', errorMessage: '' };
     },
   },
 });
+
 const { reducer, actions } = messageSlice;
-export const { setMessage, clearMessage } = actions;
+
+export const { setSuccessMessage, setErrorMessage, clearMessage } = actions;
 export default reducer;

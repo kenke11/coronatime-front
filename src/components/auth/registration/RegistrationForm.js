@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../../store/slices/auth';
 
 const schema = yup
@@ -26,6 +26,8 @@ const RegistrationForm = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
+  const { message } = useSelector((state) => state);
+
   const {
     register,
     handleSubmit,
@@ -39,8 +41,6 @@ const RegistrationForm = () => {
   const registerSubmitHandler = (data) => {
     setLoading(true);
 
-    console.log('1', data);
-
     dispatch(
       signup({
         username: data.username,
@@ -49,8 +49,13 @@ const RegistrationForm = () => {
       })
     )
       .unwrap()
+      .then(() => {
+        console.log('registration');
+      })
       .catch(setLoading(false));
   };
+
+  console.log('message', message.errorMessage);
 
   return (
     <form className='space-y-6' onSubmit={handleSubmit(registerSubmitHandler)}>

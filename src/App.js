@@ -5,11 +5,14 @@ import Registration from './components/auth/registration/Registration';
 import Auth from './components/auth/Auth';
 import Dashboard from './components/dashboard/Dashboard';
 import Worldwide from './components/dashboard/worldwide/Worldwide';
+import EmailConfirmation from './components/auth/EmailConfirmation';
 
 function App() {
   const user = useSelector((state) => state.auth);
+  const { message } = useSelector((state) => state);
 
   console.log(user);
+  console.log(message.successMessage);
 
   return (
     <>
@@ -24,6 +27,7 @@ function App() {
         >
           <Route path='login' element={<Login />} />
           <Route path='registration' element={<Registration />} />
+          <Route path='email-confirmation' element={<EmailConfirmation />} />
         </Route>
 
         <Route
@@ -33,6 +37,12 @@ function App() {
           <Route index element={<Worldwide />} />
         </Route>
       </Routes>
+
+      {message.successMessage && (
+        <div className='fixed bottom-0 right-0 bg-gray-800 text-gray-50'>
+          {message.successMessage}
+        </div>
+      )}
     </>
   );
 }

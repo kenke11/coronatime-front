@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthService from '../services/auth.service';
-import { setMessage } from './message';
+import { setErrorMessage, setSuccessMessage } from './message';
 
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -10,14 +10,14 @@ export const login = createAsyncThunk(
     console.log('req', { username, password, remember_me });
     try {
       const data = await AuthService.login(username, password, remember_me);
-
+      console.log(data);
       return { user: data };
     } catch (error) {
       const message =
         (error.response && error.response.data && error.response.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setErrorMessage(message));
     }
   }
 );
@@ -32,9 +32,13 @@ export const signup = createAsyncThunk(
     try {
       const response = await AuthService.signup(username, email, password);
       console.log('response signup', response);
-      console.log('response.data.message', response.data.message);
-      thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data;
+      if (response.status === 'success') {
+        thunkAPI.dispatch(setSuccessMessage(response.message));
+      } else if (response.status === 'error') {
+        thunkAPI.dispatch(setErrorMessage(response.errors));
+      }
+
+      return response;
     } catch (error) {
       console.log('error', error);
       const message =
@@ -43,7 +47,7 @@ export const signup = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setErrorMessage(message));
       return thunkAPI.rejectWithValue();
     }
   }
@@ -70,9 +74,11 @@ const authSlice = createSlice({
       state.user = null;
     },
     [signup.fulfilled]: (state, action) => {
+      console.log('state fulfilled - ', state);
       state.isLoggedIn = false;
     },
     [signup.rejected]: (state, action) => {
+      console.log('state rejected - ', state);
       state.isLoggedIn = false;
     },
   },
