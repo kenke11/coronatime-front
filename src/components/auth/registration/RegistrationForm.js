@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -27,6 +27,7 @@ const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
 
   const { message } = useSelector((state) => state);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -49,10 +50,16 @@ const RegistrationForm = () => {
       })
     )
       .unwrap()
-      .then(() => {
-        console.log('registration');
+      .then((response) => {
+        if (response.status === 'error') {
+          setLoading(false);
+        } else {
+          navigate('/email-confirmation', { replace: true });
+        }
       })
-      .catch(setLoading(false));
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   console.log('message', message.errorMessage);
@@ -72,12 +79,14 @@ const RegistrationForm = () => {
             name='username'
             type='text'
             className={`border ${
-              errors.username ? ' border-red-600 ' : ' border-gray-300 '
+              errors.username || message.errorMessage.username
+                ? ' border-red-600 '
+                : ' border-gray-300 '
             } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             placeholder={t('enter_unique_username')}
             {...register('username')}
           />
-          {errors.username && (
+          {(errors.username || message.errorMessage.username) && (
             <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
               <svg
                 className='h-5 w-5 text-red-600'
@@ -95,7 +104,7 @@ const RegistrationForm = () => {
           )}
         </div>
         <div className='mt-1 h-3'>
-          {errors.username && (
+          {(errors.username || message.errorMessage.username) && (
             <div className='mt-1 text-red-600 font-semibold text-xs flex '>
               <svg className='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
                 <path
@@ -105,11 +114,13 @@ const RegistrationForm = () => {
                 />
               </svg>
               <span className='ml-2 self-center'>
-                {errors.username.message}
+                {errors.username
+                  ? errors.username.message
+                  : message.errorMessage.username}
               </span>
             </div>
           )}
-          {!errors.username && (
+          {!errors.username && !message.errorMessage.username && (
             <div className='mt-1'>
               <p className='text-gray-400 text-xs'>
                 {t('username_should_be_unique_min_3_symbols')}
@@ -132,12 +143,14 @@ const RegistrationForm = () => {
             name='email'
             type='email'
             className={`border ${
-              errors.email ? ' border-red-600 ' : ' border-gray-300 '
+              errors.email || message.errorMessage.email
+                ? ' border-red-600 '
+                : ' border-gray-300 '
             } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             placeholder={t('enter_unique_email')}
             {...register('email')}
           />
-          {errors.email && (
+          {(errors.email || message.errorMessage.email) && (
             <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
               <svg
                 className='h-5 w-5 text-red-600'
@@ -155,7 +168,7 @@ const RegistrationForm = () => {
           )}
         </div>
         <div className='mt-1 h-2'>
-          {errors.email && (
+          {(errors.email || message.errorMessage.email) && (
             <div className='text-red-600 font-semibold text-xs flex '>
               <svg className='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
                 <path
@@ -164,7 +177,11 @@ const RegistrationForm = () => {
                   clipRule='evenodd'
                 />
               </svg>
-              <span className='ml-2 self-center'>{errors.email.message}</span>
+              <span className='ml-2 self-center'>
+                {errors.email
+                  ? errors.email.message
+                  : message.errorMessage.email}
+              </span>
             </div>
           )}
         </div>

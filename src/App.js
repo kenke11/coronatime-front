@@ -6,13 +6,11 @@ import Auth from './components/auth/Auth';
 import Dashboard from './components/dashboard/Dashboard';
 import Worldwide from './components/dashboard/worldwide/Worldwide';
 import EmailConfirmation from './components/auth/EmailConfirmation';
+import SuccessNotification from './components/notifications/SuccessNotification';
 
 function App() {
   const user = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state);
-
-  console.log(user);
-  console.log(message.successMessage);
 
   return (
     <>
@@ -39,9 +37,7 @@ function App() {
       </Routes>
 
       {message.successMessage && (
-        <div className='fixed bottom-0 right-0 bg-gray-800 text-gray-50'>
-          {message.successMessage}
-        </div>
+        <SuccessNotification message={message.successMessage} />
       )}
     </>
   );
