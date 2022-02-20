@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom';
-import * as yup from 'yup';
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetPassword } from '../../../store/slices/auth';
 
 const schema = yup
   .object({
@@ -20,6 +22,7 @@ const schema = yup
 const ResetPasswordForm = () => {
   const params = useParams();
   const [loading, setLoading] = useState(false);
+  const { message } = useSelector((state) => state);
 
   const {
     register,
@@ -28,9 +31,32 @@ const ResetPasswordForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const resetPasswordSubmitHandler = (data) => {
     console.log(data);
+    setLoading(true);
+    dispatch(
+      resetPassword({
+        token: data.token,
+        password: data.password,
+      })
+    )
+      .unwrap()
+      .then((response) => {
+        console.log('response in form', response);
+        if (response.status === 'error') {
+          setLoading(false);
+        } else {
+          navigate('/password-reseted', { replace: true });
+        }
+      })
+      .catch((error) => {
+        console.log('error in form', error);
+        setLoading(false);
+      });
   };
 
   return (
@@ -38,16 +64,15 @@ const ResetPasswordForm = () => {
       className='space-y-6'
       onSubmit={handleSubmit(resetPasswordSubmitHandler)}
     >
-      {/*@if($errors->any())*/}
-      {/*<ul>*/}
-      {/*  @foreach($errors as $error)*/}
-      {/*  <li>{{$error}}</li>*/}
-      {/*  @endforeach*/}
-      {/*</ul>*/}
-      {/*@endif*/}
+      {message.errorMessage && (
+        <ul>
+          {message.errorMessage.map((error) => (
+            <li>{error}</li>
+          ))}
+        </ul>
+      )}
 
-      <input type='hidden' value={params.token} />
-
+      <input type='hidden' value={params.token} {...register('token')} />
       <div className='space-y-1'>
         <label
           htmlFor='password'
@@ -100,7 +125,6 @@ const ResetPasswordForm = () => {
           )}
         </div>
       </div>
-
       <div className='space-y-1'>
         <label
           htmlFor='password_confirmation'
@@ -155,11 +179,11 @@ const ResetPasswordForm = () => {
           )}
         </div>
       </div>
-
       <div>
         <button
           type='submit'
-          className='w-full flex justify-center uppercase py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+          className='w-full flex justify-center uppercase py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400'
+          disabled={loading}
         >
           SAVE CHANGES
         </button>

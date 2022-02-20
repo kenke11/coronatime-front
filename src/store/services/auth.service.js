@@ -54,6 +54,22 @@ const confirmationEmail = (email) => {
     });
 };
 
+const resetPassword = (token, password) => {
+  const user = new FormData();
+  user.append('password', password);
+  user.append('token', token);
+  console.log('response data', token);
+  return axios
+    .post(`${API_URL}/reset-password`, user)
+    .then((response) => {
+      console.log('response axiot', response);
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 const logout = () => {
   localStorage.removeItem('user');
 };
@@ -63,6 +79,7 @@ const authService = {
   logout,
   signup,
   confirmationEmail,
+  resetPassword,
 };
 
 export default authService;

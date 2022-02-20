@@ -10,6 +10,7 @@ import SuccessNotification from './components/notifications/SuccessNotification'
 import ResetPassword from './components/auth/reset-password/ResetPassword';
 import ResetPasswordForm from './components/auth/reset-password/ResetPasswordForm';
 import EmailConfirmationForm from './components/auth/reset-password/EmailConfirmationForm';
+import PasswordReseted from './components/auth/PasswordReseted';
 
 function App() {
   const user = useSelector((state) => state.auth);
@@ -34,6 +35,8 @@ function App() {
             <Route index element={<EmailConfirmationForm />} />
             <Route path=':token' element={<ResetPasswordForm />} />
           </Route>
+
+          <Route path='password-reseted' element={<PasswordReseted />} />
         </Route>
 
         <Route

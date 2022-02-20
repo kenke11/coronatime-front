@@ -72,6 +72,23 @@ export const confirmationEmail = createAsyncThunk(
   }
 );
 
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ token, password }, thunkAPI) => {
+    try {
+      const response = await AuthService.resetPassword(token, password);
+      if (response.status === 'success') {
+        thunkAPI.dispatch(setSuccessMessage(response.message));
+      } else if (response.status === 'error') {
+        thunkAPI.dispatch(setErrorMessage(response.errors));
+      }
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
