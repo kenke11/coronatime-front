@@ -27,10 +27,7 @@ const login = (username, password, remember_me) => {
     .post(`${API_URL}/login`, user)
     .then((response) => {
       console.log(response);
-      if (response.data.status === 'success') {
-        console.log('response', response.data);
-        localStorage.setItem('user', JSON.stringify(response.data));
-      }
+
       console.log('response', response.data);
       return response.data;
     })

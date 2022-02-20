@@ -21,6 +21,7 @@ const schema = yup
 const LoginForm = (props) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const { message } = useSelector((state) => state);
 
   const {
     register,
@@ -45,14 +46,15 @@ const LoginForm = (props) => {
       .catch(setLoading(false));
   };
 
+  console.log(message);
+
   return (
     <form className='space-y-6' onSubmit={handleSubmit(loginSubmitHandler)}>
       <div className='h-2'>
-        {false && (
-          <p className='text-red-600 text-xs font-semibold'>not_verified</p>
-        )}
-        {false && (
-          <p className='text-red-600 text-xs font-semibold'>not_login</p>
+        {message.errorMessage && (
+          <p className='text-red-600 text-xs font-semibold'>
+            {t(message.errorMessage)}
+          </p>
         )}
       </div>
 

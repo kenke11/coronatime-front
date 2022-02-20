@@ -34,5 +34,7 @@
     "repeat_password": "Repeat password",
     "sign_up": "Sign up",
     "already_have_an_account": "Already have an account?",
-    "log_in": "Log in"
+    "log_in": "Log in",
+    "not_login": "Username or password incorrect.",
+    "email_not_verified": "Email not verified."
 }

@@ -7,9 +7,14 @@ const user = JSON.parse(localStorage.getItem('user'));
 export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password, remember_me }, thunkAPI) => {
-    console.log('req', { username, password, remember_me });
     try {
       const data = await AuthService.login(username, password, remember_me);
+      if (data.status === 'success') {
+        localStorage.setItem('user', JSON.stringify(data));
+        thunkAPI.dispatch(setSuccessMessage(data.message));
+      } else if (data.status === 'error') {
+        thunkAPI.dispatch(setErrorMessage(data.error));
+      }
       console.log(data);
       return { user: data };
     } catch (error) {
@@ -98,30 +103,36 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
+      if (action.payload.user.status === 'success') {
+        console.log('success');
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+      } else {
+        state.isLoggedIn = false;
+        state.user = null;
+      }
     },
-    [login.rejected]: (state, action) => {
+    [login.rejected]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },
-    [logout.fulfilled]: (state, action) => {
+    [logout.fulfilled]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },
-    [signup.fulfilled]: (state, action) => {
+    [signup.fulfilled]: (state) => {
       console.log('state fulfilled - ', state);
       state.isLoggedIn = false;
     },
-    [signup.rejected]: (state, action) => {
+    [signup.rejected]: (state) => {
       console.log('state rejected - ', state);
       state.isLoggedIn = false;
     },
-    [confirmationEmail.fulfilled]: (state, action) => {
+    [confirmationEmail.fulfilled]: (state) => {
       console.log('state confirmationEmail fulfilled - ', state);
       state.isLoggedIn = false;
     },
-    [confirmationEmail.rejected]: (state, action) => {
+    [confirmationEmail.rejected]: (state) => {
       console.log('state confirmationEmail rejected - ', state);
       state.isLoggedIn = false;
     },
