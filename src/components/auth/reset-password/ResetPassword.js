@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import EmailConfirmationForm from './EmailConfirmationForm';
+import { Outlet } from 'react-router-dom';
 
 const ResetPassword = () => {
   return (
@@ -17,7 +16,7 @@ const ResetPassword = () => {
               <h1 className='font-semibold text-2xl'>Reset Password</h1>
             </div>
             <div className='mt-14'>
-              <EmailConfirmationForm />
+              <Outlet />
             </div>
           </div>
         </div>
