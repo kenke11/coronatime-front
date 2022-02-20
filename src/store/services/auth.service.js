@@ -24,7 +24,7 @@ const login = (username, password, remember_me) => {
   user.append('password', password);
   user.append('remember_me', remember_me);
 
-  axios
+  return axios
     .post(`${API_URL}/login`, user)
     .then((response) => {
       console.log(response);
@@ -40,6 +40,21 @@ const login = (username, password, remember_me) => {
     });
 };
 
+const confirmationEmail = (email) => {
+  const user = new FormData();
+  user.append('email', email);
+
+  return axios
+    .post(`${API_URL}/reset-password-confirm`, user)
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
 const logout = () => {
   localStorage.removeItem('user');
 };
@@ -48,6 +63,7 @@ const authService = {
   login,
   logout,
   signup,
+  confirmationEmail,
 };
 
 export default authService;

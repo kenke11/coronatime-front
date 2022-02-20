@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Worldwide from './components/dashboard/worldwide/Worldwide';
 import EmailConfirmation from './components/auth/EmailConfirmation';
 import SuccessNotification from './components/notifications/SuccessNotification';
+import ResetPassword from './components/auth/reset-password/ResetPassword';
 
 function App() {
   const user = useSelector((state) => state.auth);
@@ -26,6 +27,7 @@ function App() {
           <Route path='login' element={<Login />} />
           <Route path='registration' element={<Registration />} />
           <Route path='email-confirmation' element={<EmailConfirmation />} />
+          <Route path='reset-password' element={<ResetPassword />} />
         </Route>
 
         <Route

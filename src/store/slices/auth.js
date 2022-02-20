@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import AuthService from '../services/auth.service';
 import { setErrorMessage, setSuccessMessage } from './message';
+import AuthService from '../services/auth.service';
 
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -53,6 +53,25 @@ export const signup = createAsyncThunk(
   }
 );
 
+export const confirmationEmail = createAsyncThunk(
+  'auth/confirmEmail',
+  async ({ email }, thunkAPI) => {
+    try {
+      const response = await AuthService.confirmationEmail(email);
+      console.log(response);
+      if (response.status === 'success') {
+        thunkAPI.dispatch(setSuccessMessage(response.message));
+      } else if (response.status === 'error') {
+        thunkAPI.dispatch(setErrorMessage(response.errors));
+      }
+
+      return response;
+    } catch (error) {
+      console.log('catch error', error);
+    }
+  }
+);
+
 const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
@@ -79,6 +98,14 @@ const authSlice = createSlice({
     },
     [signup.rejected]: (state, action) => {
       console.log('state rejected - ', state);
+      state.isLoggedIn = false;
+    },
+    [confirmationEmail.fulfilled]: (state, action) => {
+      console.log('state confirmationEmail fulfilled - ', state);
+      state.isLoggedIn = false;
+    },
+    [confirmationEmail.rejected]: (state, action) => {
+      console.log('state confirmationEmail rejected - ', state);
       state.isLoggedIn = false;
     },
   },

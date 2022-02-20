@@ -183,9 +183,12 @@ const LoginForm = (props) => {
         </div>
 
         <div className='text-xs'>
-          <a className='font-semibold text-indigo-600 hover:text-indigo-500'>
+          <Link
+            to={'/reset-password'}
+            className='font-semibold text-indigo-600 hover:text-indigo-500'
+          >
             {t('forgot_your_password')}
-          </a>
+          </Link>
         </div>
       </div>
 
