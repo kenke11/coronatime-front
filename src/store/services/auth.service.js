@@ -7,7 +7,6 @@ const signup = (username, email, password) => {
   user.append('username', username);
   user.append('email', email);
   user.append('password', password);
-  console.log('aq var');
   return axios
     .post(`${API_URL}/signup`, user)
     .then((response) => {
