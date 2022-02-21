@@ -11,6 +11,7 @@ import ResetPassword from './components/auth/reset-password/ResetPassword';
 import ResetPasswordForm from './components/auth/reset-password/ResetPasswordForm';
 import EmailConfirmationForm from './components/auth/reset-password/EmailConfirmationForm';
 import PasswordReseted from './components/auth/PasswordReseted';
+import ByCountry from './components/dashboard/byCountry/ByCountry';
 
 function App() {
   const user = useSelector((state) => state.auth);
@@ -44,6 +45,7 @@ function App() {
           element={user.isLoggedIn ? <Dashboard /> : <Navigate to={'/'} />}
         >
           <Route index element={<Worldwide />} />
+          <Route path='by-country' element={<ByCountry />} />
         </Route>
       </Routes>
 
