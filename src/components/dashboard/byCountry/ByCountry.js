@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import CountryNotFount from './CountryNotFount';
 
 const ByCountry = () => {
   const { t } = useTranslation();
@@ -159,11 +160,7 @@ const ByCountry = () => {
 
             {countries.status &&
               countries.status === 'success' &&
-              countries.countries.length === 0 && (
-                <div className='px-5 md:px-10 py-5 text-gray-400'>
-                  {t('countries_not_found')}
-                </div>
-              )}
+              countries.countries.length === 0 && <CountryNotFount />}
           </div>
         </div>
       </div>
