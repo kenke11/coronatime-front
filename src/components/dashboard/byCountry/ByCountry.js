@@ -1,7 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const ByCountry = () => {
   const { t } = useTranslation();
+  const { i18n } = useTranslation('home');
+  const { countries } = useSelector((state) => state);
 
   return (
     <div className='-mx-4 md:mx-0'>
@@ -139,16 +142,28 @@ const ByCountry = () => {
             </div>
           </div>
           <div className='overflow-y-auto calc-table md:h-96 w-full'>
-            {/*<div className="grid grid-cols-4 gap-4 py-5 pl-4 md:pl-10 border-b border-gray-100 w-full">*/}
-            {/*  <div>{{$country->getTranslation('country', app()->getLocale())}}</div>*/}
-            {/*  <div>{{$country->confirmed}}</div>*/}
-            {/*  <div>{{$country->deaths}}</div>*/}
-            {/*  <div>{{$country->recovered}}</div>*/}
-            {/*</div>*/}
+            {countries.status &&
+              countries.status === 'success' &&
+              countries.countries.length > 0 &&
+              countries.countries.map((country) => (
+                <div
+                  key={country.id}
+                  className='grid grid-cols-4 gap-4 py-5 pl-4 md:pl-10 border-b border-gray-100 w-full'
+                >
+                  <div>{country.country[i18n.language]}</div>
+                  <div>{country.confirmed}</div>
+                  <div>{country.deaths}</div>
+                  <div>{country.recovered}</div>
+                </div>
+              ))}
 
-            <div className='px-5 md:px-10 py-5 text-gray-400'>
-              {t('countries_not_found')}
-            </div>
+            {countries.status &&
+              countries.status === 'success' &&
+              countries.countries.length === 0 && (
+                <div className='px-5 md:px-10 py-5 text-gray-400'>
+                  {t('countries_not_found')}
+                </div>
+              )}
           </div>
         </div>
       </div>

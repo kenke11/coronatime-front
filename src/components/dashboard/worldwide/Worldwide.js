@@ -1,7 +1,35 @@
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Worldwide = () => {
   const { t } = useTranslation();
+  const { countries } = useSelector((state) => state);
+  const [newCase, setNewCase] = useState(0);
+  const [recovered, setRecovered] = useState(0);
+  const [deaths, setDeaths] = useState(0);
+
+  if (countries.status === 'success' && countries.countries.length > 0) {
+    console.log('c', countries);
+  }
+
+  useEffect(() => {
+    let newCaseSum = 0;
+    let recoveredSum = 0;
+    let deathsSum = 0;
+
+    if (countries.status === 'success' && countries.countries.length > 0) {
+      countries.countries.forEach((country) => {
+        newCaseSum += +country.confirmed;
+        recoveredSum += +country.recovered;
+        deathsSum += +country.deaths;
+      });
+      console.log(recoveredSum);
+      setNewCase(newCaseSum);
+      setRecovered(recoveredSum);
+      setDeaths(deathsSum);
+    }
+  }, [countries]);
 
   return (
     <div className='mt-3'>
@@ -18,8 +46,7 @@ const Worldwide = () => {
               />
               <div className='mt-6 font-semibold'>{t('new_case')}</div>
               <div className='text-2xl font-semibold text-blue-700 mt-4'>
-                {/*{{ $new_case }}*/}
-                715 523
+                {newCase}
               </div>
             </div>
           </div>
@@ -38,7 +65,7 @@ const Worldwide = () => {
                 {t('new_case')}
               </div>
               <div className='text-2xl md:text-4xl font-semibold text-blue-700 mt-4'>
-                {/*{{ $new_case }}*/}715 523
+                {newCase}
               </div>
             </div>
           </div>
@@ -56,7 +83,7 @@ const Worldwide = () => {
                 {t('recovered')}
               </div>
               <div className='text-2xl md:text-4xl font-semibold text-green-700 mt-4'>
-                {/*{{ $recovered }}*/}8 332
+                {recovered}
               </div>
             </div>
           </div>
@@ -74,7 +101,7 @@ const Worldwide = () => {
                 {t('deaths')}
               </div>
               <div className='text-2xl md:text-4xl font-semibold text-yellow-300 mt-4'>
-                {/*{{ $deaths }}*/}8 332
+                {deaths}
               </div>
             </div>
           </div>

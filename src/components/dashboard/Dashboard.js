@@ -2,12 +2,20 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import Header from './header/Header';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getCountries } from '../../store/slices/statistic';
 
 const Dashboard = () => {
   const { t } = useTranslation();
 
   const { pathname } = useLocation();
   const [location, setLocation] = useState('');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, [dispatch]);
 
   useEffect(() => {
     if (pathname === '/dashboard') {
