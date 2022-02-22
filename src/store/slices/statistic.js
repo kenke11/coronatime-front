@@ -9,9 +9,11 @@ const initialState = {
 export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
-    return axios.get('http://127.0.0.1:8000/api/countries').then((response) => {
-      return response.data;
-    });
+    return axios
+      .get('https://coronatime.tazo.redberryinternship.ge/api/countries')
+      .then((response) => {
+        return response.data;
+      });
   }
 );
 
