@@ -2,10 +2,16 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import CountryNotFount from './CountryNotFount';
 import CountryStatistics from './CountryStatistics';
+import { useState } from 'react';
 
 const ByCountry = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { countries } = useSelector((state) => state);
+  const [searchValue, setSearchValue] = useState('');
+
+  const searchHandler = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   return (
     <div className='-mx-4 md:mx-0'>
@@ -31,6 +37,8 @@ const ByCountry = () => {
           id='search'
           className='focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 md:pl-14 py-4 text-sm md:text-base border-gray-300 rounded-md outline-none'
           placeholder={t('search_by_country')}
+          onChange={searchHandler}
+          value={searchValue}
         />
       </div>
 
@@ -146,9 +154,19 @@ const ByCountry = () => {
             {countries.status &&
               countries.status === 'success' &&
               countries.countries.length > 0 &&
-              countries.countries.map((country) => (
-                <CountryStatistics country={country} />
-              ))}
+              countries.countries
+                .filter((value) => {
+                  if (searchValue === '') {
+                    return value;
+                  } else if (
+                    value.country[i18n.language]
+                      .toLowerCase()
+                      .includes(searchValue.toLowerCase())
+                  ) {
+                    return value;
+                  }
+                })
+                .map((country) => <CountryStatistics country={country} />)}
 
             {countries.status &&
               countries.status === 'success' &&
