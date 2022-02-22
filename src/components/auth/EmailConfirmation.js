@@ -1,4 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 const EmailConfirmation = () => {
+  const { t } = useTranslation();
+
   return (
     <div className='min-h-screen w-full flex flex-col '>
       <div className='flex justify-center mt-16'>
@@ -24,7 +28,7 @@ const EmailConfirmation = () => {
               </svg>
             </div>
             <div className='text-center mt-4'>
-              We have sent you a confirmation email
+              {t('we_have_sent_you_a_confirmation_email')}
             </div>
           </div>
         </div>

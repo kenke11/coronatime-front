@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { confirmationEmail } from '../../../store/slices/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup
   .object({
@@ -13,6 +14,8 @@ const schema = yup
   .required();
 
 const EmailConfirmationForm = () => {
+  const { t } = useTranslation();
+
   const {
     register,
     handleSubmit,
@@ -63,7 +66,7 @@ const EmailConfirmationForm = () => {
           htmlFor='email'
           className='block text-md font-semibold text-gray-900'
         >
-          Email
+          {t('email')}
         </label>
         <div className='mt-1 relative'>
           <input
@@ -75,7 +78,7 @@ const EmailConfirmationForm = () => {
                 ? ' border-red-600 '
                 : ' border-gray-300 '
             } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder='Enter unique username or email'
+            placeholder={t('enter_email')}
             {...register('email')}
           />
           {(errors.email || message.errorMessage.email) && (
@@ -116,7 +119,7 @@ const EmailConfirmationForm = () => {
           type='submit'
           className='w-full flex justify-center uppercase py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400'
         >
-          RESET PASSWORD
+          {t('reset_password')}
         </button>
       </div>
     </form>

@@ -36,5 +36,10 @@
     "already_have_an_account": "Already have an account?",
     "log_in": "Log in",
     "not_login": "Username or password incorrect.",
-    "email_not_verified": "Email not verified."
+    "email_not_verified": "Email not verified.",
+    "enter_email": "Enter your email",
+    "reset_password": "Reset Password",
+    "save_change": "Save changes",
+    "we_have_sent_you_a_confirmation_email": "We have sent you a confirmation email",
+    "password_updated_successfully": "Your password has been updated successfully"
 }

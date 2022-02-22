@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const PasswordReseted = () => {
+  const { t } = useTranslation();
+
   return (
     <div className='flex flex-col w-full'>
       <div className='flex justify-center mt-16'>
@@ -26,14 +29,14 @@ const PasswordReseted = () => {
               </svg>
             </div>
             <div className='text-center mt-4'>
-              Your password has been updeted successfully
+              {t('password_updated_successfully')}
             </div>
             <div className='text-center mt-12'>
               <Link
                 to={'/login'}
                 className='bg-green-500 uppercase text-white font-semibold hover:bg-green-600 px-24 py-5 border-green-600 transition duration-150 rounded-xl cursor-pointer'
               >
-                SIGN IN
+                {t('log_in')}
               </Link>
             </div>
           </div>

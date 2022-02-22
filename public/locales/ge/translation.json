@@ -37,5 +37,11 @@
   "already_have_an_account": "უკვე გაქვთ ანგარიში?",
   "log_in": "შესვლა",
   "not_login": "მომხმარებლის სახელი ან პაროლი არასწორია.",
-  "email_not_verified": "ელ-ფოსტა არ არის ვერიფიცირებული."
+  "email_not_verified": "ელ-ფოსტა არ არის ვერიფიცირებული.",
+  "enter_email": "შეიყვანეთ თქვენი ელ-ფოსტა",
+  "reset_password": "პაროლის აღდგენა",
+  "save_change": "ცვლილების დამახსოვრება",
+  "we_have_sent_you_a_confirmation_email": "ჩვენ გამოგიგზავნეთ დამადასტურებელი წერილი ელ-ფოსტაზე",
+  "password_updated_successfully": "თქვენი პაროლი წარმატებით განახლდა"
+
 }

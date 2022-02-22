@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword } from '../../../store/slices/auth';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup
   .object({
@@ -20,6 +21,7 @@ const schema = yup
   .required();
 
 const ResetPasswordForm = () => {
+  const { t } = useTranslation();
   const params = useParams();
   const [loading, setLoading] = useState(false);
   const { message } = useSelector((state) => state);
@@ -78,7 +80,7 @@ const ResetPasswordForm = () => {
           htmlFor='password'
           className='block text-sm font-semibold text-gray-900'
         >
-          Password
+          {t('password')}
         </label>
         <div className='mt-1 relative'>
           <input
@@ -88,7 +90,7 @@ const ResetPasswordForm = () => {
             className={`border ${
               errors.password ? ' border-red-600 ' : ' border-gray-300 '
             } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder='Fill in password'
+            placeholder={t('fill_in_password')}
             {...register('password')}
           />
           {errors.password && (
@@ -130,7 +132,7 @@ const ResetPasswordForm = () => {
           htmlFor='password_confirmation'
           className='block text-sm font-semibold text-gray-900'
         >
-          Repeat password
+          {t('repeat_password')}
         </label>
         <div className='mt-1 relative'>
           <input
@@ -142,7 +144,7 @@ const ResetPasswordForm = () => {
                 ? ' border-red-600 '
                 : ' border-gray-300 '
             } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder='Repeat password'
+            placeholder={t('repeat_password')}
             {...register('password_confirmation')}
           />
           {errors.password_confirmation && (
@@ -185,7 +187,7 @@ const ResetPasswordForm = () => {
           className='w-full flex justify-center uppercase py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400'
           disabled={loading}
         >
-          SAVE CHANGES
+          {t('save_change')}
         </button>
       </div>
     </form>
