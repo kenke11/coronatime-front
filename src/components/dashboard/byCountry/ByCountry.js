@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import CountryNotFount from './CountryNotFount';
+import CountryStatistics from './CountryStatistics';
 
 const ByCountry = () => {
   const { t } = useTranslation();
-  const { i18n } = useTranslation('home');
   const { countries } = useSelector((state) => state);
 
   return (
@@ -147,15 +147,7 @@ const ByCountry = () => {
               countries.status === 'success' &&
               countries.countries.length > 0 &&
               countries.countries.map((country) => (
-                <div
-                  key={country.id}
-                  className='grid grid-cols-4 gap-4 py-5 pl-4 md:pl-10 border-b border-gray-100 w-full'
-                >
-                  <div>{country.country[i18n.language]}</div>
-                  <div>{country.confirmed}</div>
-                  <div>{country.deaths}</div>
-                  <div>{country.recovered}</div>
-                </div>
+                <CountryStatistics country={country} />
               ))}
 
             {countries.status &&
