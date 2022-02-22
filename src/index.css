@@ -10,3 +10,45 @@
 .calc-table {
     height: calc(100vh - 228px - 100px);
 }
+
+.closed{
+    animation-name: closeNotification;
+    animation-duration: 1s;
+    opacity: 0;
+}
+
+.opened {
+    opacity: 1;
+    animation-name: openNotification;
+    animation-duration: 0.5s;
+}
+
+@keyframes openNotification {
+    0% {
+        right: -100%;
+        opacity: 0;
+    }
+    50% {
+        right: -50%;
+        opacity: 1;
+    }
+    100%{
+        right: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes closeNotification {
+    0% {
+        right: 0;
+        opacity: 1;
+    }
+    50% {
+        right: -50%;
+        opacity: 1;
+    }
+    100%{
+        right: -100%;
+        opacity: 0;
+    }
+}
