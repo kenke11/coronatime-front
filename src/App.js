@@ -12,6 +12,7 @@ import ResetPasswordForm from './components/auth/reset-password/ResetPasswordFor
 import EmailConfirmationForm from './components/auth/reset-password/EmailConfirmationForm';
 import PasswordReseted from './components/auth/PasswordReseted';
 import ByCountry from './components/dashboard/byCountry/ByCountry';
+import NotFound from './components/notFound/NotFound';
 
 function App() {
   const user = useSelector((state) => state.auth);
@@ -47,6 +48,8 @@ function App() {
           <Route index element={<Worldwide />} />
           <Route path='by-country' element={<ByCountry />} />
         </Route>
+
+        <Route path='*' element={<NotFound />} />
       </Routes>
 
       {message.successMessage && (
