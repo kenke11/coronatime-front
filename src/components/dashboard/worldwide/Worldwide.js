@@ -40,7 +40,7 @@ const Worldwide = () => {
               <img
                 className='w-24 self-center'
                 src={
-                  'https://coronatime.tazo.redberryinternship.ge/images/stats1.png'
+                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats1.png'
                 }
                 alt='stats'
               />
@@ -57,7 +57,7 @@ const Worldwide = () => {
               <img
                 className='w-24 self-center'
                 src={
-                  'https://coronatime.tazo.redberryinternship.ge/images/stats1.png'
+                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats1.png'
                 }
                 alt='stats'
               />
@@ -75,7 +75,7 @@ const Worldwide = () => {
               <img
                 className='w-24 self-center'
                 src={
-                  'https://coronatime.tazo.redberryinternship.ge/images/stats2.png'
+                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats2.png'
                 }
                 alt='stats'
               />

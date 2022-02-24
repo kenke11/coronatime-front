@@ -7,7 +7,9 @@ const EmailConfirmation = () => {
     <div className='min-h-screen w-full flex flex-col '>
       <div className='flex justify-center mt-16'>
         <img
-          src={'https://coronatime.tazo.redberryinternship.ge/images/logo.png'}
+          src={
+            'https://coronatime-api.tazo.redberryinternship.ge/images/logo.png'
+          }
           alt='logo'
         />
       </div>

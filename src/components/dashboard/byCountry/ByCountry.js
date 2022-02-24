@@ -93,7 +93,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -105,7 +105,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -128,7 +128,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -140,7 +140,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -163,7 +163,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -175,7 +175,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -198,7 +198,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />
@@ -210,7 +210,7 @@ const ByCountry = () => {
                   >
                     <img
                       src={
-                        'https://coronatime.tazo.redberryinternship.ge/images/vector.png'
+                        'https://coronatime-api.tazo.redberryinternship.ge/images/vector.png'
                       }
                       alt=''
                     />

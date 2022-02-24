@@ -5,7 +5,7 @@ const CoronaVaccineImg = () => {
     <img
       className='absolute inset-0 h-full w-full object-cover h-full'
       src={
-        'https://coronatime.tazo.redberryinternship.ge/images/covid-vaccine.png'
+        'https://coronatime-api.tazo.redberryinternship.ge/images/covid-vaccine.png'
       }
       alt={'coronatime'}
     />

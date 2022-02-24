@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://coronatime.tazo.redberryinternship.ge/api';
+const API_URL = 'https://coronatime-api.tazo.redberryinternship.ge/api';
 
 const signup = (username, email, password) => {
   const user = new FormData();

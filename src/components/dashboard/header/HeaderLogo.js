@@ -5,7 +5,9 @@ const HeaderLogo = () => {
     <Link to={'/dashboard'}>
       <img
         className='h-8 w-auto sm:h-10'
-        src={'https://coronatime.tazo.redberryinternship.ge/images/logo.png'}
+        src={
+          'https://coronatime-api.tazo.redberryinternship.ge/images/logo.png'
+        }
         alt='logo'
       />
     </Link>

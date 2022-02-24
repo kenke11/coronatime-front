@@ -14,7 +14,7 @@ const Registration = () => {
             <img
               className='h-12 w-auto'
               src={
-                'https://coronatime.tazo.redberryinternship.ge/images/logo.png'
+                'https://coronatime-api.tazo.redberryinternship.ge/images/logo.png'
               }
               alt='Workflow'
             />

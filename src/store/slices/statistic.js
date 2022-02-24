@@ -10,7 +10,7 @@ export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
     return axios
-      .get('https://coronatime.tazo.redberryinternship.ge/api/countries')
+      .get('https://coronatime-api.tazo.redberryinternship.ge/api/countries')
       .then((response) => {
         return response.data;
       });
