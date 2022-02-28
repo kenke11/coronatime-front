@@ -93,7 +93,7 @@ const Worldwide = () => {
               <img
                 className='w-24 self-center'
                 src={
-                  'https://coronatime.tazo.redberryinternship.ge/images/stats3.png'
+                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats3.png'
                 }
                 alt='stats'
               />
