@@ -8,7 +8,7 @@ const signup = (username, email, password) => {
   user.append('email', email);
   user.append('password', password);
 
-  axios
+  return axios
     .get(
       'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie',
       {
