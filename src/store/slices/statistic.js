@@ -10,9 +10,22 @@ export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
     return axios
-      .get('https://coronatime-api.tazo.redberryinternship.ge/api/countries')
+      .get(
+        'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie'
+      )
       .then((response) => {
-        return response.data;
+        console.log(response);
+
+        return axios
+          .get(
+            'https://coronatime-api.tazo.redberryinternship.ge/api/countries',
+            {
+              withCredentials: true,
+            }
+          )
+          .then((response) => {
+            return response.data;
+          });
       });
   }
 );
