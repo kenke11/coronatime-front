@@ -6,8 +6,6 @@ const initialState = {
   status: null,
 };
 
-console.log(process.env.REACT_APP_API_URL);
-
 export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
