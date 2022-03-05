@@ -9,22 +9,20 @@ const initialState = {
 export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
-    return axios
+    return await axios
       .get(
         'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie'
       )
-      .then((response) => {
-        console.log(response);
-
-        return axios
+      .then(async () => {
+        return await axios
           .get(
             'https://coronatime-api.tazo.redberryinternship.ge/api/countries',
             {
               withCredentials: true,
             }
           )
-          .then((response) => {
-            return response.data;
+          .then(async (response) => {
+            return await response.data;
           });
       });
   }
