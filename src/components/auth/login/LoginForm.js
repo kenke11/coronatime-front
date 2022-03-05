@@ -19,7 +19,7 @@ const schema = yup
   })
   .required();
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { message } = useSelector((state) => state);
