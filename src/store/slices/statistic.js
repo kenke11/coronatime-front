@@ -6,21 +6,18 @@ const initialState = {
   status: null,
 };
 
+console.log(process.env.REACT_APP_API_URL);
+
 export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
     return await axios
-      .get(
-        'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie'
-      )
+      .get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`)
       .then(async () => {
         return await axios
-          .get(
-            'https://coronatime-api.tazo.redberryinternship.ge/api/countries',
-            {
-              withCredentials: true,
-            }
-          )
+          .get(`${process.env.REACT_APP_API_URL}/api/countries`, {
+            withCredentials: true,
+          })
           .then(async (response) => {
             return await response.data;
           });

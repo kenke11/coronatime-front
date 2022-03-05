@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://coronatime-api.tazo.redberryinternship.ge/api';
+const API_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 const signup = async (username, email, password) => {
   const user = new FormData();
@@ -9,15 +9,12 @@ const signup = async (username, email, password) => {
   user.append('password', password);
 
   return await axios
-    .get(
-      'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie',
-      {
-        withCredentials: true,
-      }
-    )
+    .get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`, {
+      withCredentials: true,
+    })
     .then(async () => {
       return await axios
-        .post(`${API_URL}/signup`, user, {
+        .post(`${process.env.REACT_APP_API_URL}/api/signup`, user, {
           withCredentials: true,
         })
         .then(async (response) => {
@@ -33,15 +30,12 @@ const login = async (username, password, remember_me) => {
   user.append('remember_me', remember_me);
 
   return await axios
-    .get(
-      'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie',
-      {
-        withCredentials: true,
-      }
-    )
+    .get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`, {
+      withCredentials: true,
+    })
     .then(async () => {
       return await axios
-        .post(`${API_URL}/login`, user, {
+        .post(`${process.env.REACT_APP_API_URL}/api/login`, user, {
           withCredentials: true,
         })
         .then(async (response) => {
@@ -55,17 +49,18 @@ const confirmationEmail = async (email) => {
   user.append('email', email);
 
   return await axios
-    .get(
-      'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie',
-      {
-        withCredentials: true,
-      }
-    )
+    .get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`, {
+      withCredentials: true,
+    })
     .then(async () => {
       return await axios
-        .post(`${API_URL}/reset-password-confirm`, user, {
-          withCredentials: true,
-        })
+        .post(
+          `${process.env.REACT_APP_API_URL}/api/reset-password-confirm`,
+          user,
+          {
+            withCredentials: true,
+          }
+        )
         .then(async (response) => {
           return await response.data;
         });
@@ -78,15 +73,12 @@ const resetPassword = async (token, password) => {
   user.append('token', token);
 
   return await axios
-    .get(
-      'https://coronatime-api.tazo.redberryinternship.ge/sanctum/csrf-cookie',
-      {
-        withCredentials: true,
-      }
-    )
+    .get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`, {
+      withCredentials: true,
+    })
     .then(async () => {
       return await axios
-        .post(`${API_URL}/reset-password`, user, {
+        .post(`${process.env.REACT_APP_API_URL}/api/reset-password`, user, {
           withCredentials: true,
         })
         .then(async (response) => {
