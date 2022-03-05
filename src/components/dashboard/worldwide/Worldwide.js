@@ -29,7 +29,7 @@ const Worldwide = () => {
   return (
     <div className='mt-3'>
       <div>
-        <div className='grid grid-cols-1 gap-6 grid-cols-1 grid-cols-1 md:hidden'>
+        <div className='grid grid-cols-1 gap-6 md:hidden'>
           <div className='col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 bg-purple-100'>
             <div className='flex-1 flex flex-col p-10'>
               <img
