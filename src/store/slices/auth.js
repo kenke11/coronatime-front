@@ -27,8 +27,8 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk('auth/logout', async () => {
-  await AuthService.logout();
+export const logout = createAsyncThunk('auth/logout', () => {
+  AuthService.logout();
 });
 
 export const signup = createAsyncThunk(
@@ -36,7 +36,6 @@ export const signup = createAsyncThunk(
   async ({ username, email, password }, thunkAPI) => {
     try {
       const response = await AuthService.signup(username, email, password);
-      console.log('response signup', response);
       if (response.status === 'success') {
         thunkAPI.dispatch(setSuccessMessage(response.message));
       } else if (response.status === 'error') {
@@ -45,7 +44,6 @@ export const signup = createAsyncThunk(
 
       return response;
     } catch (error) {
-      console.log('error', error);
       const message =
         (error.response &&
           error.response.data &&
@@ -63,7 +61,6 @@ export const confirmationEmail = createAsyncThunk(
   async ({ email }, thunkAPI) => {
     try {
       const response = await AuthService.confirmationEmail(email);
-      console.log(response);
       if (response.status === 'success') {
         thunkAPI.dispatch(setSuccessMessage(response.message));
       } else if (response.status === 'error') {
@@ -89,7 +86,7 @@ export const resetPassword = createAsyncThunk(
       }
       return response;
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
     }
   }
 );
