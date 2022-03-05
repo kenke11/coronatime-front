@@ -5,7 +5,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { signup } from '../../../store/slices/auth';
+
+import { signup } from 'store/slices/auth';
 
 const schema = yup
   .object({

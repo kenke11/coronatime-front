@@ -1,7 +1,8 @@
 import React from 'react';
-import CoronaVaccineImg from '../CoronaVaccineImg';
 import { useTranslation } from 'react-i18next';
-import LoginForm from './LoginForm';
+
+import CoronaVaccineImg from 'components/auth/CoronaVaccineImg';
+import LoginForm from 'components/auth/login/LoginForm';
 
 const Login = () => {
   const { t } = useTranslation();

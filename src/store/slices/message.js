@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const initialState = { successMessage: '', errorMessage: '' };
+
 const messageSlice = createSlice({
   name: 'message',
   initialState,

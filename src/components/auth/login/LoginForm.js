@@ -9,7 +9,8 @@ import { useTranslation } from 'react-i18next';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { login } from '../../../store/slices/auth';
+
+import { login } from 'store/slices/auth';
 
 const schema = yup
   .object({

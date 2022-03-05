@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import CountryNotFount from './CountryNotFount';
-import CountryStatistics from './CountryStatistics';
-import { useState } from 'react';
+
+import CountryNotFount from 'components/dashboard/byCountry/CountryNotFount';
+import CountryStatistics from 'components/dashboard/byCountry/CountryStatistics';
 
 const ByCountry = () => {
   const { t, i18n } = useTranslation();

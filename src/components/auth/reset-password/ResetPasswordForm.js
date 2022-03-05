@@ -4,8 +4,9 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetPassword } from '../../../store/slices/auth';
 import { useTranslation } from 'react-i18next';
+
+import { resetPassword } from 'store/slices/auth';
 
 const schema = yup
   .object({

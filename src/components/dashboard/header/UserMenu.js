@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
-import { logout } from '../../../store/slices/auth';
+import { logout } from 'store/slices/auth';
 
 const UserMenu = () => {
   const username = useSelector((state) => state.auth.user.user.username);

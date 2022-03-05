@@ -2,10 +2,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { confirmationEmail } from '../../../store/slices/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import { confirmationEmail } from 'store/slices/auth';
 
 const schema = yup
   .object({

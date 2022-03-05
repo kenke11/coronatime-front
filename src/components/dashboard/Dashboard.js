@@ -3,7 +3,8 @@ import Header from './header/Header';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCountries } from '../../store/slices/statistic';
+
+import { getCountries } from 'store/slices/statistic';
 
 const Dashboard = () => {
   const { t } = useTranslation();

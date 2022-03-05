@@ -1,6 +1,6 @@
-import HeaderLogo from './HeaderLogo';
-import LanguageChangeWindow from './LanguageChangeWindow';
-import UserMenu from './UserMenu';
+import HeaderLogo from 'components/dashboard/header/HeaderLogo';
+import LanguageChangeWindow from 'components/dashboard/header/LanguageChangeWindow';
+import UserMenu from 'components/dashboard/header/UserMenu';
 
 const Header = () => {
   return (
