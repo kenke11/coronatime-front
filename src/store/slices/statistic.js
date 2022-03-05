@@ -36,7 +36,6 @@ const countryStatistics = createSlice({
       state.status = 'loading';
     },
     [getCountries.fulfilled]: (state, { payload }) => {
-      console.log('fulfilled', payload);
       state.countries = payload;
       state.status = 'success';
     },

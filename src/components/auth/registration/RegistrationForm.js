@@ -63,8 +63,6 @@ const RegistrationForm = () => {
       });
   };
 
-  console.log('message', message.errorMessage);
-
   return (
     <form className='space-y-6' onSubmit={handleSubmit(registerSubmitHandler)}>
       <div>

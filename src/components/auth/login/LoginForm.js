@@ -47,8 +47,6 @@ const LoginForm = (props) => {
       .catch(setLoading(false));
   };
 
-  console.log(message);
-
   return (
     <form className='space-y-6' onSubmit={handleSubmit(loginSubmitHandler)}>
       <div className='h-2'>

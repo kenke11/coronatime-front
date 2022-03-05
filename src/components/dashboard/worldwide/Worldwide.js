@@ -9,10 +9,6 @@ const Worldwide = () => {
   const [recovered, setRecovered] = useState(0);
   const [deaths, setDeaths] = useState(0);
 
-  if (countries.status === 'success' && countries.countries.length > 0) {
-    console.log('c', countries);
-  }
-
   useEffect(() => {
     let newCaseSum = 0;
     let recoveredSum = 0;
@@ -24,7 +20,6 @@ const Worldwide = () => {
         recoveredSum += +country.recovered;
         deathsSum += +country.deaths;
       });
-      console.log(recoveredSum);
       setNewCase(newCaseSum);
       setRecovered(recoveredSum);
       setDeaths(deathsSum);

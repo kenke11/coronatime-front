@@ -39,7 +39,6 @@ const ResetPasswordForm = () => {
   const dispatch = useDispatch();
 
   const resetPasswordSubmitHandler = (data) => {
-    console.log(data);
     setLoading(true);
     dispatch(
       resetPassword({
@@ -49,7 +48,6 @@ const ResetPasswordForm = () => {
     )
       .unwrap()
       .then((response) => {
-        console.log('response in form', response);
         if (response.status === 'error') {
           setLoading(false);
         } else {
@@ -57,7 +55,6 @@ const ResetPasswordForm = () => {
         }
       })
       .catch((error) => {
-        console.log('error in form', error);
         setLoading(false);
       });
   };

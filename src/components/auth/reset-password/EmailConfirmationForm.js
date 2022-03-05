@@ -31,21 +31,17 @@ const EmailConfirmationForm = () => {
   const dispatch = useDispatch();
 
   const EmailConfirmationSubmitHandler = (data) => {
-    console.log('data', data);
     setLoading(true);
     dispatch(confirmationEmail({ email: data.email }))
       .unwrap()
       .then((response) => {
-        console.log('response status ', response);
         if (response.status === 'error') {
           setLoading(false);
         } else {
-          console.log('response in form', response);
           navigate('/email-confirmation', { replace: true });
         }
       })
       .catch((error) => {
-        console.log('error form', error);
         setLoading(false);
       });
   };

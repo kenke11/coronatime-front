@@ -15,7 +15,6 @@ export const login = createAsyncThunk(
       } else if (data.status === 'error') {
         thunkAPI.dispatch(setErrorMessage(data.error));
       }
-      console.log(data);
       return { user: data };
     } catch (error) {
       const message =
@@ -101,7 +100,6 @@ const authSlice = createSlice({
   extraReducers: {
     [login.fulfilled]: (state, action) => {
       if (action.payload.user.status === 'success') {
-        console.log('success');
         state.isLoggedIn = true;
         state.user = action.payload.user;
       } else {
@@ -118,19 +116,15 @@ const authSlice = createSlice({
       state.user = null;
     },
     [signup.fulfilled]: (state) => {
-      console.log('state fulfilled - ', state);
       state.isLoggedIn = false;
     },
     [signup.rejected]: (state) => {
-      console.log('state rejected - ', state);
       state.isLoggedIn = false;
     },
     [confirmationEmail.fulfilled]: (state) => {
-      console.log('state confirmationEmail fulfilled - ', state);
       state.isLoggedIn = false;
     },
     [confirmationEmail.rejected]: (state) => {
-      console.log('state confirmationEmail rejected - ', state);
       state.isLoggedIn = false;
     },
   },
