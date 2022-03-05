@@ -5,7 +5,6 @@
 
 ### Table of Contents
 
-In the project directory, you can run:
 
 * [Prerequisites](#prerequisites)
 * [Tech Stack](#tech-stack)
