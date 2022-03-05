@@ -32,7 +32,13 @@
 git clone https://github.com/RedberryInternship/tazokenkebashvili-coronatime-front.git
 ```
 
-2. Next step requires install all the dependencies.
+2. Create .env file
+
+```sh
+cp .env.example .env
+```
+
+3. Next step requires install all the dependencies.
 
 ```sh
 npm install
