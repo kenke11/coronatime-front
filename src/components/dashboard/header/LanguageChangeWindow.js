@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
+import ChevronDownIcon from 'UI/icons/ChevronDownIcon';
 
 const LanguageChangeWindow = () => {
   const { t, i18n } = useTranslation();
@@ -32,19 +33,7 @@ const LanguageChangeWindow = () => {
     <div>
       <button onClick={languageChangeWindow} className='flex items-center'>
         <span>{t('language')}</span>
-        <svg
-          className='h-4 w-4 ml-2'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth='2'
-            d='M19 9l-7 7-7-7'
-          />
-        </svg>
+        <ChevronDownIcon />
       </button>
 
       {languageWindow && (

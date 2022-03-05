@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import CountryNotFount from 'components/dashboard/byCountry/CountryNotFount';
 import CountryStatistics from 'components/dashboard/byCountry/CountryStatistics';
+import SearchIcon from 'UI/icons/SearchIcon';
 
 const ByCountry = () => {
   const { t, i18n } = useTranslation();
@@ -51,19 +52,7 @@ const ByCountry = () => {
     <div className='-mx-4 md:mx-0'>
       <div className='w-60 mt-0 md:mt-1 relative md:border md:border-gray-300 rounded-md shadow-sm'>
         <div className='absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none'>
-          <svg
-            className='w-4 h-4 md:h-6 md:w-6 text-gray-600'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-            />
-          </svg>
+          <SearchIcon />
         </div>
         <input
           type='text'
