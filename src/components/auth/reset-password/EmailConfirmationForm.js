@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { confirmationEmail } from 'store/slices/auth';
-import ExclamationCircle from 'UI/icons/ExclamationCircle';
+import Input from 'UI/form/Input';
 
 const schema = yup
   .object({
@@ -59,41 +59,15 @@ const EmailConfirmationForm = () => {
           </p>
         )}
       </div>
-      <div>
-        <label
-          htmlFor='email'
-          className='block text-md font-semibold text-gray-900'
-        >
-          {t('email')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='email'
-            name='email'
-            type='email'
-            className={`border ${
-              errors.email || message.errorMessage.email
-                ? ' border-red-600 '
-                : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('enter_email')}
-            {...register('email')}
-          />
-          {(errors.email || message.errorMessage.email) && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-2'>
-          {errors.email && (
-            <div className='text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>{errors.email.message}</span>
-            </div>
-          )}
-        </div>
-      </div>
+
+      <Input
+        errors={errors}
+        message={message}
+        register={register}
+        name='email'
+        text='email'
+      />
+
       <div>
         <button
           disabled={loading}

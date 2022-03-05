@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { signup } from 'store/slices/auth';
-import ExclamationCircle from 'UI/icons/ExclamationCircle';
+import Input from 'UI/form/Input';
 
 const schema = yup
   .object({
@@ -44,6 +44,8 @@ const RegistrationForm = () => {
   const registerSubmitHandler = (data) => {
     setLoading(true);
 
+    console.log(data);
+
     dispatch(
       signup({
         username: data.username,
@@ -67,167 +69,45 @@ const RegistrationForm = () => {
   return (
     <form className='space-y-6' onSubmit={handleSubmit(registerSubmitHandler)}>
       <div>
-        <label
-          htmlFor='username'
-          className='block text-sm font-semibold text-gray-900'
-        >
-          {t('username')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='username'
-            name='username'
-            type='text'
-            className={`border ${
-              errors.username || message.errorMessage.username
-                ? ' border-red-600 '
-                : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('enter_unique_username')}
-            {...register('username')}
-          />
-          {(errors.username || message.errorMessage.username) && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-3'>
-          {(errors.username || message.errorMessage.username) && (
-            <div className='mt-1 text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>
-                {errors.username
-                  ? errors.username.message
-                  : message.errorMessage.username}
-              </span>
-            </div>
-          )}
-          {!errors.username && !message.errorMessage.username && (
-            <div className='mt-1'>
-              <p className='text-gray-400 text-xs'>
-                {t('username_should_be_unique_min_3_symbols')}
-              </p>
-            </div>
-          )}
-        </div>
+        <Input
+          errors={errors}
+          message={message}
+          name='username'
+          text='text'
+          register={register}
+        />
+        {!errors.username && !message.errorMessage.username && (
+          <div className='absolute -mt-2'>
+            <p className='text-gray-400 text-xs'>
+              {t('username_should_be_unique_min_3_symbols')}
+            </p>
+          </div>
+        )}
       </div>
 
-      <div>
-        <label
-          htmlFor='email'
-          className='block text-sm font-semibold text-gray-900'
-        >
-          {t('email')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='email'
-            name='email'
-            type='email'
-            className={`border ${
-              errors.email || message.errorMessage.email
-                ? ' border-red-600 '
-                : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('enter_unique_email')}
-            {...register('email')}
-          />
-          {(errors.email || message.errorMessage.email) && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-2'>
-          {(errors.email || message.errorMessage.email) && (
-            <div className='text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>
-                {errors.email
-                  ? errors.email.message
-                  : message.errorMessage.email}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+      <Input
+        errors={errors}
+        message={message}
+        register={register}
+        name='email'
+        text='email'
+      />
 
-      <div className='space-y-1'>
-        <label
-          htmlFor='password'
-          className='block text-sm font-semibold text-gray-900'
-        >
-          {t('password')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='password'
-            name='password'
-            type='password'
-            autoComplete='current-password'
-            className={`border ${
-              errors.password ? ' border-red-600 ' : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('fill_in_password')}
-            {...register('password')}
-          />
-          {errors.password && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-2'>
-          {errors.password && (
-            <div className='text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>
-                {errors.password.message}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+      <Input
+        errors={errors}
+        message={message}
+        register={register}
+        name='password'
+        text='password'
+      />
 
-      <div className='space-y-1'>
-        <label
-          htmlFor='password_confirmation'
-          className='block text-sm font-semibold text-gray-900'
-        >
-          {t('repeat_password')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='password_confirmation'
-            name='password_confirmation'
-            type='password'
-            autoComplete='current-password'
-            className={`border ${
-              errors.password_confirmation
-                ? ' border-red-600 '
-                : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('repeat_password')}
-            {...register('password_confirmation')}
-          />
-          {errors.password_confirmation && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-2'>
-          {errors.password_confirmation && (
-            <div className='text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>
-                {errors.password_confirmation.message}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+      <Input
+        errors={errors}
+        message={message}
+        register={register}
+        name='password_confirmation'
+        text='password'
+      />
 
       <div className='flex items-center justify-between'>
         <div className='flex items-center'>

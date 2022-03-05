@@ -6,9 +6,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import ExclamationCircle from 'UI/icons/ExclamationCircle';
-
 import { resetPassword } from 'store/slices/auth';
+import Input from 'UI/form/Input';
 
 const schema = yup
   .object({
@@ -75,78 +74,23 @@ const ResetPasswordForm = () => {
       )}
 
       <input type='hidden' value={params.token} {...register('token')} />
-      <div className='space-y-1'>
-        <label
-          htmlFor='password'
-          className='block text-sm font-semibold text-gray-900'
-        >
-          {t('password')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='password'
-            name='password'
-            type='password'
-            className={`border ${
-              errors.password ? ' border-red-600 ' : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('fill_in_password')}
-            {...register('password')}
-          />
-          {errors.password && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-2'>
-          {errors.password && (
-            <div className='text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>
-                {errors.password.message}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
-      <div className='space-y-1'>
-        <label
-          htmlFor='password_confirmation'
-          className='block text-sm font-semibold text-gray-900'
-        >
-          {t('repeat_password')}
-        </label>
-        <div className='mt-1 relative'>
-          <input
-            id='password_confirmation'
-            name='password_confirmation'
-            type='password'
-            className={`border ${
-              errors.password_confirmation
-                ? ' border-red-600 '
-                : ' border-gray-300 '
-            } appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
-            placeholder={t('repeat_password')}
-            {...register('password_confirmation')}
-          />
-          {errors.password_confirmation && (
-            <div className='absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none'>
-              <ExclamationCircle />
-            </div>
-          )}
-        </div>
-        <div className='mt-1 h-2'>
-          {errors.password_confirmation && (
-            <div className='text-red-600 font-semibold text-xs flex '>
-              <ExclamationCircle />
-              <span className='ml-2 self-center'>
-                {errors.password_confirmation.message}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+
+      <Input
+        errors={errors}
+        message={message}
+        register={register}
+        name='password'
+        text='password'
+      />
+
+      <Input
+        errors={errors}
+        message={message}
+        register={register}
+        name='password_confirmation'
+        text='password'
+      />
+
       <div>
         <button
           type='submit'

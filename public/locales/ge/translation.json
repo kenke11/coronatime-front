@@ -32,7 +32,7 @@
   "username_should_be_unique_min_3_symbols": "მომხმარებლის სახელი უნდა იყოს უნიკალური, უნდა შედგებოდეს მინ 3 სიმბოლოსგან",
   "email": "ელ-ფოსტა",
   "enter_unique_email": "შეიყვანეთ ელ-ფოსტა",
-  "repeat_password": "გაიმეორეთ პაროლი",
+  "password_confirmation": "გაიმეორეთ პაროლი",
   "sign_up": "რეგისტრაცია",
   "already_have_an_account": "უკვე გაქვთ ანგარიში?",
   "log_in": "შესვლა",
