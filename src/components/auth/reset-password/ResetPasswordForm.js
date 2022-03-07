@@ -55,7 +55,7 @@ const ResetPasswordForm = () => {
           navigate('/password-reseted', { replace: true });
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setLoading(false);
       });
   };

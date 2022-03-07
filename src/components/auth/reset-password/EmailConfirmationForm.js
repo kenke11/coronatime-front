@@ -42,7 +42,7 @@ const EmailConfirmationForm = () => {
           navigate('/email-confirmation', { replace: true });
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setLoading(false);
       });
   };
