@@ -9,17 +9,18 @@ const initialState = {
 export const getCountries = createAsyncThunk(
   'statistics/getCountries',
   async () => {
-    return await axios
-      .get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`)
-      .then(async () => {
-        return await axios
-          .get(`${process.env.REACT_APP_API_URL}/api/countries`, {
-            withCredentials: true,
-          })
-          .then(async (response) => {
-            return await response.data;
-          });
-      });
+    await axios.get(`${process.env.REACT_APP_API_URL}/sanctum/csrf-cookie`, {
+      withCredentials: true,
+    });
+
+    let res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/countries`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return await res.data;
   }
 );
 
