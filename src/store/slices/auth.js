@@ -58,35 +58,27 @@ export const signup = createAsyncThunk(
 export const confirmationEmail = createAsyncThunk(
   'auth/confirmEmail',
   async ({ email }, thunkAPI) => {
-    try {
-      const response = await AuthService.confirmationEmail(email);
-      if (response.status === 'success') {
-        thunkAPI.dispatch(setSuccessMessage(response.message));
-      } else if (response.status === 'error') {
-        thunkAPI.dispatch(setErrorMessage(response.errors));
-      }
-
-      return response;
-    } catch (error) {
-      console.log('catch error', error);
+    const response = await AuthService.confirmationEmail(email);
+    if (response.status === 'success') {
+      thunkAPI.dispatch(setSuccessMessage(response.message));
+    } else if (response.status === 'error') {
+      thunkAPI.dispatch(setErrorMessage(response.errors));
     }
+
+    return response;
   }
 );
 
 export const resetPassword = createAsyncThunk(
   'auth/resetPassword',
   async ({ token, password }, thunkAPI) => {
-    try {
-      const response = await AuthService.resetPassword(token, password);
-      if (response.status === 'success') {
-        thunkAPI.dispatch(setSuccessMessage(response.message));
-      } else if (response.status === 'error') {
-        thunkAPI.dispatch(setErrorMessage(response.errors));
-      }
-      return response;
-    } catch (error) {
-      console.log('error', error);
+    const response = await AuthService.resetPassword(token, password);
+    if (response.status === 'success') {
+      thunkAPI.dispatch(setSuccessMessage(response.message));
+    } else if (response.status === 'error') {
+      thunkAPI.dispatch(setErrorMessage(response.errors));
     }
+    return response;
   }
 );
 

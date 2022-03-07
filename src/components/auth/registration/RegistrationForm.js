@@ -44,8 +44,6 @@ const RegistrationForm = () => {
   const registerSubmitHandler = (data) => {
     setLoading(true);
 
-    console.log(data);
-
     dispatch(
       signup({
         username: data.username,
