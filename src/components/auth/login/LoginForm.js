@@ -35,17 +35,20 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const loginSubmitHandler = (data) => {
+  const loginSubmitHandler = async (data) => {
     setLoading(true);
-    dispatch(
-      login({
-        username: data.username,
-        password: data.password,
-        remember_me: data.remember_me,
-      })
-    )
-      .unwrap()
-      .catch(setLoading(false));
+
+    try {
+      await dispatch(
+        login({
+          username: data.username,
+          password: data.password,
+          remember_me: data.remember_me,
+        })
+      ).unwrap();
+    } catch {
+      await setLoading(false);
+    }
   };
 
   return (

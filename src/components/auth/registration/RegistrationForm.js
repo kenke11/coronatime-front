@@ -41,27 +41,26 @@ const RegistrationForm = () => {
 
   const dispatch = useDispatch();
 
-  const registerSubmitHandler = (data) => {
+  const registerSubmitHandler = async (data) => {
     setLoading(true);
 
-    dispatch(
-      signup({
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      })
-    )
-      .unwrap()
-      .then((response) => {
-        if (response.status === 'error') {
-          setLoading(false);
-        } else {
-          navigate('/email-confirmation', { replace: true });
-        }
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    try {
+      let res = await dispatch(
+        signup({
+          username: data.username,
+          email: data.email,
+          password: data.password,
+        })
+      ).unwrap();
+
+      if (res.status === 'error') {
+        await setLoading(false);
+      } else {
+        await navigate('/email-confirmation', { replace: true });
+      }
+    } catch {
+      await setLoading(false);
+    }
   };
 
   return (

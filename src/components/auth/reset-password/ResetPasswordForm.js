@@ -41,23 +41,23 @@ const ResetPasswordForm = () => {
 
   const resetPasswordSubmitHandler = (data) => {
     setLoading(true);
-    dispatch(
-      resetPassword({
-        token: data.token,
-        password: data.password,
-      })
-    )
-      .unwrap()
-      .then((response) => {
-        if (response.status === 'error') {
-          setLoading(false);
-        } else {
-          navigate('/password-reseted', { replace: true });
-        }
-      })
-      .catch(() => {
+
+    try {
+      let res = dispatch(
+        resetPassword({
+          token: data.token,
+          password: data.password,
+        })
+      ).unwrap();
+
+      if (res.status === 'error') {
         setLoading(false);
-      });
+      } else {
+        navigate('/password-reseted', { replace: true });
+      }
+    } catch {
+      setLoading(false);
+    }
   };
 
   return (

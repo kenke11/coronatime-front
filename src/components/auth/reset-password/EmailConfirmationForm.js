@@ -31,20 +31,22 @@ const EmailConfirmationForm = () => {
 
   const dispatch = useDispatch();
 
-  const EmailConfirmationSubmitHandler = (data) => {
+  const EmailConfirmationSubmitHandler = async (data) => {
     setLoading(true);
-    dispatch(confirmationEmail({ email: data.email }))
-      .unwrap()
-      .then((response) => {
-        if (response.status === 'error') {
-          setLoading(false);
-        } else {
-          navigate('/email-confirmation', { replace: true });
-        }
-      })
-      .catch(() => {
+
+    try {
+      let res = await dispatch(
+        confirmationEmail({ email: data.email })
+      ).unwrap();
+
+      if (res.status === 'error') {
         setLoading(false);
-      });
+      } else {
+        navigate('/email-confirmation', { replace: true });
+      }
+    } catch {
+      setLoading(false);
+    }
   };
 
   return (
