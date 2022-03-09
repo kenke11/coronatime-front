@@ -8,9 +8,7 @@ const ResetPassword = () => {
     <div className='flex flex-col w-full'>
       <div className='flex justify-center mt-16'>
         <img
-          src={
-            'https://coronatime-api.tazo.redberryinternship.ge/images/logo.png'
-          }
+          src={`${process.env.REACT_APP_API_URL}/images/logo.png`}
           alt='logo'
         />
       </div>

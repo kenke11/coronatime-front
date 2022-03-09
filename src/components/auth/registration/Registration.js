@@ -14,9 +14,7 @@ const Registration = () => {
           <div>
             <img
               className='h-12 w-auto'
-              src={
-                'https://coronatime-api.tazo.redberryinternship.ge/images/logo.png'
-              }
+              src={`${process.env.REACT_APP_API_URL}/images/logo.png`}
               alt='Workflow'
             />
             <h2 className='mt-16 text-3xl font-semibold text-gray-900'>

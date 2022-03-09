@@ -34,9 +34,7 @@ const Worldwide = () => {
             <div className='flex-1 flex flex-col p-10'>
               <img
                 className='w-24 self-center'
-                src={
-                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats1.png'
-                }
+                src={`${process.env.REACT_APP_API_URL}/images/stats1.png`}
                 alt='stats'
               />
               <div className='mt-6 font-semibold'>{t('new_case')}</div>
@@ -51,9 +49,7 @@ const Worldwide = () => {
             <div className='flex-1 flex flex-col p-10'>
               <img
                 className='w-24 self-center'
-                src={
-                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats1.png'
-                }
+                src={`${process.env.REACT_APP_API_URL}/images/stats1.png`}
                 alt='stats'
               />
               <div className='mt-6 font-semibold text-sm md:text-xl'>
@@ -69,9 +65,7 @@ const Worldwide = () => {
             <div className='flex-1 flex flex-col py-10 md:p-10'>
               <img
                 className='w-24 self-center'
-                src={
-                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats2.png'
-                }
+                src={`${process.env.REACT_APP_API_URL}/images/stats2.png`}
                 alt='stats'
               />
               <div className='mt-12 font-semibold text-xs md:text-base'>
@@ -87,9 +81,7 @@ const Worldwide = () => {
             <div className='flex-1 flex flex-col py-10 md:px-10'>
               <img
                 className='w-24 self-center'
-                src={
-                  'https://coronatime-api.tazo.redberryinternship.ge/images/stats3.png'
-                }
+                src={`${process.env.REACT_APP_API_URL}/images/stats3.png`}
                 alt='stats'
               />
               <div className='mt-9 font-semibold text-xs md:text-base'>

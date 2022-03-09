@@ -5,9 +5,7 @@ const HeaderLogo = () => {
     <Link to={'/dashboard'}>
       <img
         className='h-8 w-auto sm:h-10'
-        src={
-          'https://coronatime-api.tazo.redberryinternship.ge/images/logo.png'
-        }
+        src={`${process.env.REACT_APP_API_URL}/images/logo.png`}
         alt='logo'
       />
     </Link>
