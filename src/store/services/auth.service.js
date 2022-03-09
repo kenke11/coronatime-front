@@ -16,7 +16,6 @@ const signup = async (username, email, password) => {
       withCredentials: true,
     }
   );
-  console.log(res);
 
   return await res.data;
 };
