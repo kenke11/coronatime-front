@@ -20,7 +20,7 @@ export const getCountries = createAsyncThunk(
       }
     );
 
-    return await res.data;
+    return res.data;
   }
 );
 

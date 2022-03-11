@@ -54,12 +54,12 @@ const RegistrationForm = () => {
       ).unwrap();
 
       if (res.status === 'error') {
-        await setLoading(false);
+        setLoading(false);
       } else {
-        await navigate('/email-confirmation', { replace: true });
+        navigate('/email-confirmation', { replace: true });
       }
     } catch {
-      await setLoading(false);
+      setLoading(false);
     }
   };
 

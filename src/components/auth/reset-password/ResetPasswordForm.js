@@ -39,11 +39,11 @@ const ResetPasswordForm = () => {
 
   const dispatch = useDispatch();
 
-  const resetPasswordSubmitHandler = (data) => {
+  const resetPasswordSubmitHandler = async (data) => {
     setLoading(true);
 
     try {
-      let res = dispatch(
+      let res = await dispatch(
         resetPassword({
           token: data.token,
           password: data.password,

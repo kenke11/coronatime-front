@@ -17,7 +17,7 @@ const signup = async (username, email, password) => {
     }
   );
 
-  return await res.data;
+  return res.data;
 };
 
 const login = async (username, password, remember_me) => {
@@ -38,7 +38,7 @@ const login = async (username, password, remember_me) => {
     }
   );
 
-  return await res.data;
+  return res.data;
 };
 
 const confirmationEmail = async (email) => {
@@ -77,7 +77,7 @@ const resetPassword = async (token, password) => {
     }
   );
 
-  return await res.data;
+  return res.data;
 };
 
 const logout = () => {

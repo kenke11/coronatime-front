@@ -47,7 +47,7 @@ const LoginForm = () => {
         })
       ).unwrap();
     } catch {
-      await setLoading(false);
+      setLoading(false);
     }
   };
 
